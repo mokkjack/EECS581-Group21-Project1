@@ -1,0 +1,12 @@
+Meeting 1 
+8/25/2025
+Initial meeting, introductions, and establishing an outline for the project
+
+Present Memebers: Alexander Carrillo, Evan Zhuo, Zhang Chen, Jack Morice, Ian Foehrweiser
+
+Outine:
+Main goal for this week is set up the repositiory and communication channels for us to stay updated with the project and each other
+We have already started on the code, deciding to do it html and javascript
+We want to get the board functional by next meeting
+
+-------------------------------------------------------------------------------------------------------------------------------------
