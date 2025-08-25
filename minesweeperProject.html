@@ -30,7 +30,7 @@
         <p id="gameStatus"> text</p>
         <button id="playButton" onclick="generateBoard()"> Play </button>
         <button id="resetButton" onclick="resetPage()"> Reset </button>
-        
+        <div id="board"></div>
 
         <script>
             //Reset Function
@@ -43,8 +43,10 @@
             }
 
             function generateBoard() {
-                for (i=0; i<10; i++) {
+                const board = document.getElementById("board")
+                for (let i=0; i<10; i++) {
                     const newButton = document.createElement('button')
+                    board.appendChild(newButton)
                 }
             }
         </script>
