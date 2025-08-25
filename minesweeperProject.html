@@ -42,11 +42,16 @@
                 document.getElementById("gameStatus").innerHTML = ID
             }
 
+            //Generate Board Function
             function generateBoard() {
                 const board = document.getElementById("board")
                 for (let i=0; i<10; i++) {
-                    const newButton = document.createElement('button')
-                    board.appendChild(newButton)
+                    const newRow = document.createElement('div') // Create a div to store buttons
+                    board.appendChild(newRow) // Append the div to the board slot
+                    for (let j = 0; j < 10; j++) {
+                        const newButton = document.createElement('button') // Create buttons k times
+                        newRow.appendChild(newButton) // Append buttons to the row
+                    }
                 }
             }
         </script>
