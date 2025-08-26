@@ -37,11 +37,11 @@
 
     <body onload="disableButton()">
         <h1> Minesweeper Game </h1>
-        <p id="gameStatus"> </p>
         <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
         <button id="selectButton" onclick="select()"> Select </button>
         <button id="playButton" onclick="playGame()"> Play </button>
         <button id="resetButton" onclick="resetPage()"> Reset </button>
+        <p id="gameStatus"> </p>
         <p id="gap"></p> <!-- Create a gap between the button and the board -->
         <div id="board"></div>
 
@@ -58,7 +58,7 @@
             //Enable Function
             function select() {
                 let bombValue = document.getElementById("bombAmount").value;
-                document.getElementById("gameStatus").innerHTML = bombValue;
+                document.getElementById("gameStatus").innerHTML = "There will be " + bombValue + " bombs in this round of Minesweeper.";
                 document.getElementById("playButton").disabled = false;
             }
 
@@ -75,13 +75,16 @@
                 document.getElementById("bombAmount").disabled = true; //Disable Bomb Select
                 document.getElementById("selectButton").disabled = true; //Disable Select Button
                 document.getElementById("playButton").disabled = true; //Disable Play Button
+                document.getElementById("gameStatus").innerHTML = ""; //Clear the notification
                 generateBoard();
             }
 
+
+            
             //Generate Board Function
             function generateBoard() {
                 const board = document.getElementById("board")
-                for (let i=0; i<10; i++) {
+                for (let i = 0; i < 10; i++) {
                     const newRow = document.createElement('div') // Create a div to store buttons
                     board.appendChild(newRow) // Append the div to the board slot
                     for (let j = 0; j < 10; j++) {
@@ -90,6 +93,8 @@
                     }
                 }
             }
+
+
         </script>
         
     </body>
