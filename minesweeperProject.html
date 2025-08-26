@@ -39,7 +39,7 @@
         <h1> Minesweeper Game </h1>
         <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
         <button id="selectButton" onclick="select()"> Select </button>
-        <button id="playButton" onclick="playGame()"> Play </button>
+        <button id="playButton" onclick="loadGame()"> Play </button>
         <button id="resetButton" onclick="resetPage()"> Reset </button>
         <p id="gameStatus"> </p>
         <p id="gap"></p> <!-- Create a gap between the button and the board -->
@@ -70,8 +70,8 @@
 
             //Gameplay Section
 
-            //Play Function
-            function playGame() {
+            //Load Game Function
+            function loadGame() {
                 document.getElementById("bombAmount").disabled = true; //Disable Bomb Select
                 document.getElementById("selectButton").disabled = true; //Disable Select Button
                 document.getElementById("playButton").disabled = true; //Disable Play Button
@@ -79,9 +79,35 @@
                 generateBoard();
             }
 
+            //Play Function
+            function playGame() {
+                firstClick();
+                terrorism();
+                //while loop here, im tired so this sounds like another day's issue.
+                //the while loop either closes out due to a win or due to a bomb
+                //flag function - decrements the value in the top-left if possible
+                //goofy-ahh design
+            }
 
-            
+            //
+
+            //Click Function
+            function click() {
+                //define
+            }
+
+            //Load Bomb Function
+            function terrorism() {
+                //define
+            }
+
+            //First Click Function
+            function firstClick() {
+                //define
+            }
+
             //Generate Board Function
+            //id needs to be assigned to buttons
             function generateBoard() {
                 const board = document.getElementById("board")
                 for (let i = 0; i < 10; i++) {
