@@ -35,8 +35,10 @@
         <title>Minesweeper Project</title>
     </head>
 
-    <body onload="disableButton()">
-        <h1> Minesweeper Game </h1>
+    <!-- <body onload="disableButton()"> -->
+    <body onload="disableButton(); loadHorse('Images/horse.webp')">
+        <div id="default">
+        <h1 id="titleMessage"> Minesweeper Game </h1>
         <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
         <button id="selectButton" onclick="select()"> Select </button>
         <button id="playButton" onclick="loadGame()"> Play </button>
@@ -44,22 +46,32 @@
         <p id="gameStatus"> </p>
         <p id="gap"></p> <!-- Create a gap between the button and the board -->
         <div id="board"></div>
+        <img src="Images/horse.webp" width="0%" height="auto"> <!-- Error Check: Images Folder Detector -->
+        </div>
 
 
         <!-- JavaScript Section -->
         <script>
+            //Global Variables
+            const board = document.getElementById("board");
+            const bombAmount = document.getElementById("bombAmount");
+            const selectButton = document.getElementById("selectButton");
+            const playButton = document.getElementById("playButton");
+            const resetButton = document.getElementById("resetButton");
+            const gameStatus = document.getElementById("gameStatus");
+
             //UI Section
 
             //Disable Function
             function disableButton() {
-                document.getElementById("playButton").disabled = true;
+                playButton.disabled = true;
             }
 
             //Enable Function
             function select() {
-                let bombValue = document.getElementById("bombAmount").value;
-                document.getElementById("gameStatus").innerHTML = "There will be " + bombValue + " bombs in this round of Minesweeper.";
-                document.getElementById("playButton").disabled = false;
+                let bombValue = bombAmount.value;
+                gameStatus.innerHTML = "There will be " + bombValue + " bombs in this round of Minesweeper.";
+                playButton.disabled = false;
             }
 
             //Reset Function
@@ -72,10 +84,10 @@
 
             //Load Game Function
             function loadGame() {
-                document.getElementById("bombAmount").disabled = true; //Disable Bomb Select
-                document.getElementById("selectButton").disabled = true; //Disable Select Button
-                document.getElementById("playButton").disabled = true; //Disable Play Button
-                document.getElementById("gameStatus").innerHTML = ""; //Clear the notification
+                bombAmount.disabled = true; //Disable Bomb Select
+                selectButton.disabled = true; //Disable Select Button
+                playButton.disabled = true; //Disable Play Button
+                gameStatus.innerHTML = ""; //Clear the notification
                 generateBoard();
             }
 
@@ -128,7 +140,6 @@
             //Generate Board Function
             //id needs to be assigned to buttons
             function generateBoard() {
-                const board = document.getElementById("board")
                 for (let i = 0; i < 10; i++) {
                     const newRow = document.createElement('div') // Create a div to store buttons
                     board.appendChild(newRow) // Append the div to the board slot
@@ -139,12 +150,29 @@
                 }
             }
 
+            //Error Function
+            function errorPage(type) {
+                //Remove All UI
+                document.getElementById("titleMessage").innerHTML = "Error Detected";
+                bombAmount.remove();
+                selectButton.remove();
+                playButton.remove();
+                //Error Type if-else Block
+                if (type == 1) {
+                    gameStatus.innerHTML = "Error 01: No Horse Power - Use the 'Reset' Button to reload the page after checking if the 'Images' folder is present in the file."
+                }
+
+            }
+
             //Important Horse Function
-            function loadHorse() {
-                //define
+            function loadHorse(url) {
+                var horse = new Image();
+                horse.src = url;
+                if (horse.width == 0) {
+                    errorPage(1)
+                }
             }
 
         </script>
-        
     </body>
 </html>
