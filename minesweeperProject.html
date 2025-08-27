@@ -24,7 +24,7 @@
             height: 50px;
         }
         
-        button {
+        #msTile {
             width: 50px; 
             height: 50px;
             }
@@ -44,6 +44,7 @@
         <button id="playButton" onclick="loadGame()"> Play </button>
         <button id="resetButton" onclick="resetPage()"> Reset </button>
         <p id="gameStatus"> </p>
+        <p id="testPara"> </p> <!-- TESTING PARAGRAPH [REMEMBER TO DELETE!!!!]-->
         <p id="gap"></p> <!-- Create a gap between the button and the board -->
         <div id="board"></div>
         <img src="Images/horse.webp" width="0%" height="auto"> <!-- Error Check: Images Folder Detector -->
@@ -59,6 +60,7 @@
             const playButton = document.getElementById("playButton");
             const resetButton = document.getElementById("resetButton");
             const gameStatus = document.getElementById("gameStatus");
+            const msTiles = document.querySelectorAll("#msTile");
 
             //UI Section
 
@@ -89,19 +91,36 @@
                 playButton.disabled = true; //Disable Play Button
                 gameStatus.innerHTML = ""; //Clear the notification
                 generateBoard();
+                playGame();
             }
 
             //Play Function
             function playGame() {
-                firstClick();
-                terrorism();
+                // firstLeftClick();
+                // terrorism(); 
+                document.addEventListener('click', tileIdentify => { //used Reddit to find similar function and learn target
+                    if (tileIdentify.target.matches('button')) {
+                        document.getElementById("testPara").innerHTML = tileIdentify.target.value;
+                    }
+                });
                 //while loop here, im tired so this sounds like another day's issue.
                 //the while loop either closes out due to a win or due to a bomb
                 //flag function - decrements the value in the top-left if possible
                 //goofy-ahh design
             }
 
-            //
+
+            //End Game Function
+            function endGame(condition) {
+                if (condition == '1') {
+                    gameStatus.innerHTML = "GAME OVER";
+                } else if (condition == '2') {
+                    gameStatus.innerHTML = "CONGRATUATION!";
+                } else {
+                    errorPage(2);
+                }
+            }
+
             //Right-Click Function (Flag Function)
             function rightClick() {
                 //define
@@ -110,8 +129,8 @@
             //Left-Click Function
             function leftClick() {
                 if (isBomb()) {
-                    //define
-                } else if (isNumber) {
+                    endGame(1);
+                } else if (isNumber()) {
                     //define
                 } else {
                     //define
@@ -123,8 +142,12 @@
                 //define
             }
             //Check if Tile is Bomb Function
-            function isBomb() {
-                //define
+            function isBomb(tile) {
+                if (tile.value == 'b') {
+                    return true;
+                } else {
+                    return false;
+                }
             } 
 
             //Load Bomb Function
@@ -140,12 +163,16 @@
             //Generate Board Function
             //id needs to be assigned to buttons
             function generateBoard() {
+                let idNum = 0; //ID number
                 for (let i = 0; i < 10; i++) {
-                    const newRow = document.createElement('div') // Create a div to store buttons
-                    board.appendChild(newRow) // Append the div to the board slot
+                    const msRow = document.createElement('div'); // Create a div to store buttons
+                    board.appendChild(msRow); // Append the div to the board slot
                     for (let j = 0; j < 10; j++) {
-                        const newButton = document.createElement('button') // Create buttons k times
-                        newRow.appendChild(newButton) // Append buttons to the row
+                        const msButton = document.createElement('button'); // Create buttons k times'
+                        msButton.id = "msTile";
+                        msButton.value = idNum;
+                        msRow.appendChild(msButton); // Append buttons to the row
+                        idNum++;
                     }
                 }
             }
@@ -160,6 +187,8 @@
                 //Error Type if-else Block
                 if (type == 1) {
                     gameStatus.innerHTML = "Error 01: No Horse Power - Use the 'Reset' Button to reload the page after checking if the 'Images' folder is present in the file."
+                } if (type == 2) {
+                    gameStatus.innerHTML = "Error 02: Unknown Game End Condition - Use the 'Reset' Button to reload the page."
                 }
 
             }
