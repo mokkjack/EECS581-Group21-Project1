@@ -23,8 +23,8 @@
             width: 150px;
             height: 50px;
         }
-        
-        #msTile {
+      /* fix styling*/
+        button { 
             width: 50px; 
             height: 50px;
             }
@@ -107,8 +107,8 @@
                     if (tileIdentify.target.matches('button')) {
                         document.getElementById("testPara").innerHTML = tileIdentify.target.value; //test line [DELETE LATER]
                         //FIRST CLICK HERE
+                        terrorism()
                         if (gameActive == 1) { //Check if game is active
-                            terrorism()
                             if (tileIdentify.target.value == 'b') { //Bomb Check
                                 gameActive = 0; //Disable Game
                                 endGame(1);
@@ -139,6 +139,7 @@
                 }
             }
 
+
             //Check if Tile is Number Function
             function isNumber() {
                 //define
@@ -151,17 +152,20 @@
                     return false;
                 }
             } 
-
             //Load Bomb Function
             function terrorism() {
                 let juFufu = bombAmount.value;
                 while (juFufu != 0) {
                     let randomValue = randomNumber();
+                    let tile = document.getElementById("msTile-"+ randomValue);
+                    if (tile.value !== "b"){
+                        tile.value = "b";
+                    }
                     console.log(randomValue); //test line [DELETE LATER]
                     juFufu--;
                 } 
             }
-
+        
             //Random Number Generator
             function randomNumber() {
                 let randomNum = Math.floor(Math.random() * boardSize);
@@ -177,14 +181,14 @@
                     board.appendChild(msRow); // Append the div to the board slot
                     for (let j = 0; j < 10; j++) {
                         const msButton = document.createElement('button'); // Create buttons k times'
-                        msButton.id = "msTile";
+                        msButton.id = "msTile-"+idNum;// assign unique ID
                         msButton.value = idNum;
                         // msButton.value = 'b'; //test line [DELETE LATER]
                         msRow.appendChild(msButton); // Append buttons to the row
                         idNum++;
                     }
                 }
-                boardSize = idNum + 1; //Number is used for randomizer
+                boardSize = idNum; //Number is used for randomizer, fix code
             }
 
             //Error Function
