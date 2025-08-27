@@ -36,8 +36,8 @@
     </head>
 
     <!-- <body onload="disableButton()"> -->
-    <body onload="disableButton(); loadHorse('Images/horse.webp')">
-        <div id="default">
+    <body onload="disableButton(); loadHorse('Images/horse.webp')" oncontextmenu="return false"> <!--learned disable oncontextmenu function from StackOverflow-->
+        <div id="mainPage">
         <h1 id="titleMessage"> Minesweeper Game </h1>
         <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
         <button id="selectButton" onclick="select()"> Select </button>
@@ -55,12 +55,14 @@
         <script>
             //Global Variables
             const board = document.getElementById("board");
+            let boardSize = 0;
             const bombAmount = document.getElementById("bombAmount");
             const selectButton = document.getElementById("selectButton");
             const playButton = document.getElementById("playButton");
             const resetButton = document.getElementById("resetButton");
             const gameStatus = document.getElementById("gameStatus");
             const msTiles = document.querySelectorAll("#msTile");
+            let gameActive = 0; //0: INACTIVE | 1: ACTIVE
 
             //UI Section
 
@@ -96,17 +98,32 @@
 
             //Play Function
             function playGame() {
-                // firstLeftClick();
-                // terrorism(); 
+                let firstLeftClick = 0; //First Left Click Gate
+                gameActive = 1; //Set the game as Active
+                randomNumber(boardSize);
+
+                //Left Click Listener
                 document.addEventListener('click', tileIdentify => { //used Reddit to find similar function and learn target
                     if (tileIdentify.target.matches('button')) {
-                        document.getElementById("testPara").innerHTML = tileIdentify.target.value;
+                        document.getElementById("testPara").innerHTML = tileIdentify.target.value; //test line [DELETE LATER]
+                        //FIRST CLICK HERE
+                        if (gameActive == 1) { //Check if game is active
+                            terrorism()
+                            if (tileIdentify.target.value == 'b') { //Bomb Check
+                                gameActive = 0; //Disable Game
+                                endGame(1);
+                            }
+                        }
                     }
                 });
-                //while loop here, im tired so this sounds like another day's issue.
-                //the while loop either closes out due to a win or due to a bomb
-                //flag function - decrements the value in the top-left if possible
-                //goofy-ahh design
+                //Right Click Listener
+                document.addEventListener('contextmenu', tileIdentify => { //used Reddit to find similar function and learn target
+                    if (tileIdentify.target.matches('button')) {
+                        if (gameActive == 1) {
+                            document.getElementById("testPara").innerHTML = "flag"; //test line [DELETE LATER]
+                        }
+                    }
+                });
             }
 
 
@@ -114,26 +131,11 @@
             function endGame(condition) {
                 if (condition == '1') {
                     gameStatus.innerHTML = "GAME OVER";
+                    //***INSERT SHOW ALL BOMBS FUNCTION HERE***
                 } else if (condition == '2') {
                     gameStatus.innerHTML = "CONGRATUATION!";
                 } else {
                     errorPage(2);
-                }
-            }
-
-            //Right-Click Function (Flag Function)
-            function rightClick() {
-                //define
-            }
-
-            //Left-Click Function
-            function leftClick() {
-                if (isBomb()) {
-                    endGame(1);
-                } else if (isNumber()) {
-                    //define
-                } else {
-                    //define
                 }
             }
 
@@ -143,21 +145,27 @@
             }
             //Check if Tile is Bomb Function
             function isBomb(tile) {
-                if (tile.value == 'b') {
+                if (tile.value == 'b') { //Tile is a bomb
                     return true;
-                } else {
+                } else { //Tile is NOT a bomb
                     return false;
                 }
             } 
 
             //Load Bomb Function
             function terrorism() {
-                //define
+                let juFufu = bombAmount.value;
+                while (juFufu != 0) {
+                    let randomValue = randomNumber();
+                    console.log(randomValue); //test line [DELETE LATER]
+                    juFufu--;
+                } 
             }
 
-            //First Click Function
-            function firstClick() {
-                //define
+            //Random Number Generator
+            function randomNumber() {
+                let randomNum = Math.floor(Math.random() * boardSize);
+                return randomNum;
             }
 
             //Generate Board Function
@@ -171,10 +179,12 @@
                         const msButton = document.createElement('button'); // Create buttons k times'
                         msButton.id = "msTile";
                         msButton.value = idNum;
+                        msButton.value = 'b'; //test line [DELETE LATER]
                         msRow.appendChild(msButton); // Append buttons to the row
                         idNum++;
                     }
                 }
+                boardSize = idNum + 1; //Number is used for randomizer
             }
 
             //Error Function
@@ -193,7 +203,7 @@
 
             }
 
-            //Important Horse Function
+            //Image Check Function
             function loadHorse(url) {
                 var horse = new Image();
                 horse.src = url;
