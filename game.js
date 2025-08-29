@@ -51,7 +51,7 @@
                     if (tileIdentify.target.matches('button')) {
                         document.getElementById("testPara").innerHTML = tileIdentify.target.value; //test line [DELETE LATER]
                         //FIRST CLICK HERE
-                        terrorism()
+                        loadBomb()
                         if (gameActive == 1) { //Check if game is active
                             if (tileIdentify.target.value == 'b') { //Bomb Check
                                 gameActive = 0; //Disable Game
@@ -82,7 +82,7 @@
                     errorPage(2);
                 }
             }
-
+            
             //Check if Tile is Number Function
             function isNumber() {
                 //define
@@ -153,7 +153,7 @@
             }
 
             //Image Check Function
-            function loadHorse(url) {
+            function loadHorse(url) { //???????? -Ian
                 var horse = new Image();
                 horse.src = url;
                 if (horse.width == 0) {
