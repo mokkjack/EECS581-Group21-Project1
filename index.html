@@ -1,0 +1,53 @@
+<!--minesweeperProject.html-->
+<!DOCTYPE html>
+<html>
+    <!-- CSS Section -->
+    <style>
+        input {
+            width: 50px;
+            height: 40px;
+        }
+
+        #selectButton {
+            width: 100px;
+            height: 50px;
+        }
+
+        #playButton {
+            width: 150px;
+            height: 50px;
+        }
+
+        #resetButton {
+            width: 150px;
+            height: 50px;
+        }
+      /* fix styling*/
+        button { 
+            width: 50px; 
+            height: 50px;
+            }
+    </style>
+    <!-- HTML Section -->
+    <head>
+        <title>Minesweeper Project</title>
+    </head>
+    <!-- <body onload="disableButton()"> -->
+    <body onload="disableButton(); loadHorse('Images/horse.webp')" oncontextmenu="return false"> <!--learned disable oncontextmenu function from StackOverflow-->
+        <div id="mainPage">
+        <h1 id="titleMessage"> Minesweeper Game </h1>
+        <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
+        <button id="selectButton" onclick="select()"> Select </button>
+        <button id="playButton" onclick="loadGame()"> Play </button>
+        <button id="resetButton" onclick="resetPage()"> Reset </button>
+        <p id="gameStatus"> </p>
+        <p id="testPara"> </p> <!-- TESTING PARAGRAPH [REMEMBER TO DELETE!!!!]-->
+        <p id="gap"></p> <!-- Create a gap between the button and the board -->
+        <div id="board"></div>
+        <img src="Images/horse.webp" width="0%" height="auto"> <!-- Error Check: Images Folder Detector -->
+        </div>
+
+        <!-- JavaScript Section -->
+        <script src="game.js"></script>
+    </body>
+</html>

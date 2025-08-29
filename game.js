@@ -1,70 +1,14 @@
-<!--minesweeperProject.html-->
-<!DOCTYPE html>
-<html>
-
-    <!-- CSS Section -->
-    <style>
-        input {
-            width: 50px;
-            height: 40px;
-        }
-
-        #selectButton {
-            width: 100px;
-            height: 50px;
-        }
-
-        #playButton {
-            width: 150px;
-            height: 50px;
-        }
-
-        #resetButton {
-            width: 150px;
-            height: 50px;
-        }
-      /* fix styling*/
-        button { 
-            width: 50px; 
-            height: 50px;
-            }
-    </style>
-
-    <!-- HTML Section -->
-    <head>
-        <title>Minesweeper Project</title>
-    </head>
-
-    <!-- <body onload="disableButton()"> -->
-    <body onload="disableButton(); loadHorse('Images/horse.webp')" oncontextmenu="return false"> <!--learned disable oncontextmenu function from StackOverflow-->
-        <div id="mainPage">
-        <h1 id="titleMessage"> Minesweeper Game </h1>
-        <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
-        <button id="selectButton" onclick="select()"> Select </button>
-        <button id="playButton" onclick="loadGame()"> Play </button>
-        <button id="resetButton" onclick="resetPage()"> Reset </button>
-        <p id="gameStatus"> </p>
-        <p id="testPara"> </p> <!-- TESTING PARAGRAPH [REMEMBER TO DELETE!!!!]-->
-        <p id="gap"></p> <!-- Create a gap between the button and the board -->
-        <div id="board"></div>
-        <img src="Images/horse.webp" width="0%" height="auto"> <!-- Error Check: Images Folder Detector -->
-        </div>
-
-
-        <!-- JavaScript Section -->
-        <script>
-            //Global Variables
             const board = document.getElementById("board");
-            let boardSize = 0;
             const bombAmount = document.getElementById("bombAmount");
             const selectButton = document.getElementById("selectButton");
             const playButton = document.getElementById("playButton");
             const resetButton = document.getElementById("resetButton");
             const gameStatus = document.getElementById("gameStatus");
             const msTiles = document.querySelectorAll("#msTile");
+            let boardSize = 0; //Size of board
             let gameActive = 0; //0: INACTIVE | 1: ACTIVE
 
-            //UI Section
+        //UI Section
 
             //Disable Function
             function disableButton() {
@@ -84,7 +28,7 @@
             }
 
 
-            //Gameplay Section
+        //Gameplay Section
 
             //Load Game Function
             function loadGame() {
@@ -139,11 +83,11 @@
                 }
             }
 
-
             //Check if Tile is Number Function
             function isNumber() {
                 //define
             }
+
             //Check if Tile is Bomb Function
             function isBomb(tile) {
                 if (tile.value == 'b') { //Tile is a bomb
@@ -152,6 +96,7 @@
                     return false;
                 }
             } 
+            
             //Load Bomb Function
             function terrorism() {
                 let juFufu = bombAmount.value;
@@ -215,7 +160,3 @@
                     errorPage(1)
                 }
             }
-
-        </script>
-    </body>
-</html>
