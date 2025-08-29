@@ -98,16 +98,16 @@
             } 
             
             //Load Bomb Function
-            function terrorism() {
-                let juFufu = bombAmount.value;
-                while (juFufu != 0) {
+            function loadBomb() {
+                let bombCounter = bombAmount.value;
+                while (bombCounter != 0) {
                     let randomValue = randomNumber();
                     let tile = document.getElementById("msTile-"+ randomValue);
                     if (tile.value !== "b"){
                         tile.value = "b";
                     }
                     console.log(randomValue); //test line [DELETE LATER]
-                    juFufu--;
+                    bombCounter--;
                 } 
             }
         
