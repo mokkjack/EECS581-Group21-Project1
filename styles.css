@@ -1,0 +1,53 @@
+input {
+    width: 50px;
+    height: 40px;
+}
+
+button { 
+    width: 50px; 
+    height: 50px;
+}
+
+#selectButton {
+    width: 100px;
+    height: 50px;
+}
+
+#playButton {
+    width: 150px;
+    height: 50px;
+}
+
+#resetButton {
+    width: 150px;
+    height: 50px;
+}
+
+.flagged {
+    background-image: url('Images/flag.png');
+}
+
+.revealed-0 {
+    background-color:rgb(197, 197, 197)
+}
+
+.revealed-1 {
+    background-image: url('Images/1.png');
+    background-color:rgb(197, 197, 197)
+}
+
+.revealed-2 {
+    background-image: url('Images/2.png');
+    background-color:rgb(197, 197, 197)
+
+}
+
+.revealed-3 {
+    background-image: url('Images/3.png');
+    background-color:rgb(197, 197, 197)
+}
+
+.bomb {
+    background-image: url('Images/bomb.png');
+    background-color:rgb(197, 197, 197)
+}
