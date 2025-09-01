@@ -29,8 +29,14 @@ function disableButton() {
 //Enable Function
 function select() {
     let bombValue = bombAmount.value;
+    //Zhang: Add a check to ensure bomb amount is within requirement
+    if (bombValue >= 10 && bombValue <= 20){
     gameStatus.innerHTML = "There will be " + bombValue + " bombs in this round of Minesweeper.";
-    playButton.disabled = false;
+    playButton.disabled = false;}else{
+        alert("Please select a bomb value between 10 and 20.");
+        playButton.disabled = true;
+        gameStatus.innerHTML = "Please select a bomb value between 10 and 20.";
+    }
 }
 
 //Reset Function
