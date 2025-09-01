@@ -57,6 +57,31 @@ body {
     background-color:rgb(197, 197, 197)
 }
 
+.revealed-4 {
+    background-image: url('Images/4.png');
+    background-color:rgb(197, 197, 197)
+}
+
+.revealed-5 {
+    background-image: url('Images/6.png');
+    background-color:rgb(197, 197, 197)
+}
+
+.revealed-6 {
+    background-image: url('Images/6.png');
+    background-color:rgb(197, 197, 197)
+}
+
+.revealed-7 {
+    background-image: url('Images/7.png');
+    background-color:rgb(197, 197, 197)
+}
+
+.revealed-8 {
+    background-image: url('Images/8.png');
+    background-color:rgb(197, 197, 197)
+}
+
 .bomb {
     background-image: url('Images/bomb.png');
     background-color:rgb(197, 197, 197)

@@ -56,6 +56,12 @@ function loadGame() {
     playGame(); //start the actual game
 }
 
+//Zhang: implementation to check for win condition
+function checkWinCondition() {
+    if (flaggedTiles.length !== bombTiles.length) return false;
+    return flaggedTiles.every(tile => bombTiles.includes(tile));
+}
+
 //Play Function
 function playGame() {
     let firstLeftClick = 0; //First Left Click Gate
@@ -68,7 +74,9 @@ function playGame() {
             document.getElementById("testPara").innerHTML = tileIdentify.target.id; //test line [DELETE LATER]
             if (firstLeftClick == 0) { //check if this is the first click or not, so we can generate the bombs
                 firstLeftClick = 1; //change flag
-                loadBomb(); //generate all bombs on the board
+                //Zhang: added the new parameter and function
+                loadBomb(tileIdentify.target); //generate all bombs on the board
+                calculateTileNumbers(); //calculate the numbers for each tile
             }
             if (gameActive == 1) { //Check if game is active
                 if (tileIdentify.target.bomb == true) { //Bomb Check
@@ -80,7 +88,8 @@ function playGame() {
                     tileIdentify.target.classList.add('revealed-' + tileIdentify.target.value); // Add revealed image based on value
                     tileIdentify.target.revealed = true; //Set the tile as revealed
                 }
-                if (flaggedTiles==bombTiles){ //Check if all bombs are flagged (Jack note - this is totally jank and just a placeholder)
+                //Zhang: This should work(?)
+                if (checkWinCondition()){ //Check if all bombs are flagged (Jack note - this is totally jank and just a placeholder)
                     endGame(2); //Win game
                 }
                 //Otherwise, (aka if it's flagged or revealed) do nothing to it
@@ -104,7 +113,26 @@ function playGame() {
         }
     });
 }
-
+//Zhang: Function to calculate the number of adjacent bombs for each tile
+function calculateTileNumbers(){
+    for (let i = 0; i < boardSize; i++){
+        let tile = document.getElementById("msTile-"+ i);
+        if (!tile.bomb){
+            let adjacentBombs = 0;
+            const leftEdge = (i % 10 === 0);
+            const rightEdge = (i % 10 === 9);
+            if (i > 9 && !leftEdge && document.getElementById("msTile-"+ (i-11)).bomb) adjacentBombs++; //top-left
+            if (i > 9 && document.getElementById("msTile-"+ (i-10)).bomb) adjacentBombs++; //top
+            if (i > 9 && !rightEdge && document.getElementById("msTile-"+ (i-9)).bomb) adjacentBombs++; //top-right
+            if (!leftEdge && document.getElementById("msTile-"+ (i-1)).bomb) adjacentBombs++; //left
+            if (!rightEdge && document.getElementById("msTile-"+ (i+1)).bomb) adjacentBombs++; //right
+            if (i < boardSize - 10 && !leftEdge && document.getElementById("msTile-"+ (i+11)).bomb) adjacentBombs++; //bottom-left
+            if (i < boardSize - 10 && document.getElementById("msTile-"+ (i+10)).bomb) adjacentBombs++; //bottom
+            if (i < boardSize - 10 && !rightEdge && document.getElementById("msTile-"+ (i+9)).bomb) adjacentBombs++; //bottom-right
+            tile.value = adjacentBombs; //Set the tile's value to the number of adjacent bombs
+        }
+    }
+}
 
 //Game Logic Function
 //End Game Function
@@ -125,16 +153,18 @@ function isBomb(tile) {
 } 
             
 //Load Bomb Function
-function loadBomb() {
+//Zhang: redefine this function to assign value to the tile at the same time
+function loadBomb(clicked_tile) {
     let bombCounter = bombAmount.value;
-    while (bombCounter != 0) {
+    while (bombCounter > 0) {
         let randomValue = randomNumber();
         let tile = document.getElementById("msTile-"+ randomValue);
-        if (tile.bomb !== true){
+        if (tile.id !== clicked_tile.id && tile.bomb !== true){ //Ensure the first clicked tile is not a bomb
             tile.bomb = true;
+            bombTiles.push(tile);
+            bombCounter--;
         }
         console.log(randomValue); //test line [DELETE LATER]
-        bombCounter--;
     } 
 }
         
@@ -153,7 +183,7 @@ function generateBoard() {
         for (let j = 0; j < 10; j++) {
             const msButton = document.createElement('button'); // Create buttons k times
             msButton.id = "msTile-"+idNum;// assign unique ID for tracking
-            msButton.value = 0; // Set initial value, 0 is a bomb/empty tile, and then 1-3 for amount of bombs around it
+            // msButton.value = 0; // Set initial value, 0 is a bomb/empty tile, and then 1-3 for amount of bombs around it
             msButton.bomb = false;
             msButton.revealed = false;
             msButton.flagged = false;
