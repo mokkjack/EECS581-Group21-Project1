@@ -59,7 +59,40 @@ function loadGame() {
 //Zhang: implementation to check for win condition
 function checkWinCondition() {
     if (flaggedTiles.length !== bombTiles.length) return false;
-    return flaggedTiles.every(tile => bombTiles.includes(tile));
+    return bombTiles.every(tile => flaggedTiles.includes(tile));
+}
+
+//Zhang: implementation for revealing adjacent tile, logic is similar to calculateTileNumbers, but this time use recursive
+//to keep revealing tiles until all safe tiles are uncovered
+function revealAdjacentTiles(tile) {
+    const tileId = parseInt(tile.id.split('-')[1]);
+    const leftEdge = (tileId % 10 === 0);
+    const rightEdge = (tileId % 10 === 9);
+
+    const neighbors = [];
+    if (tileId >= 10) {
+        if (!leftEdge) neighbors.push(tileId - 11); // Top-left
+        neighbors.push(tileId - 10); // Top
+        if (!rightEdge) neighbors.push(tileId - 9); // Top-right
+    }
+    if (!leftEdge) neighbors.push(tileId - 1); // Left
+    if (!rightEdge) neighbors.push(tileId + 1); // Right
+    if (tileId < boardSize - 10) {
+        if (!leftEdge) neighbors.push(tileId + 9); // Bottom-left
+        neighbors.push(tileId + 10); // Bottom
+        if (!rightEdge) neighbors.push(tileId + 11); // Bottom-right
+    }
+
+    for (const neighborId of neighbors) {
+        const neighborTile = document.getElementById("msTile-" + neighborId);
+        if (neighborTile && !neighborTile.revealed && !neighborTile.bomb) {
+            neighborTile.classList.add('revealed-' + neighborTile.value);
+            neighborTile.revealed = true;
+            if (neighborTile.value == 0) {
+                revealAdjacentTiles(neighborTile); // Recursively reveal tiles
+            }
+        }
+    }
 }
 
 //Play Function
@@ -86,7 +119,11 @@ function playGame() {
                 }
                 if (tileIdentify.target.bomb == false && tileIdentify.target.revealed == false) { //if the tile is not a bomb and hasn't been touched yet
                     tileIdentify.target.classList.add('revealed-' + tileIdentify.target.value); // Add revealed image based on value
-                    tileIdentify.target.revealed = true; //Set the tile as revealed
+                    tileIdentify.target.revealed = true; // Set the tile as revealed
+                    //Zhang: revealing surrounding tiles instead of just having one tile revealed when clicking
+                    if (tileIdentify.target.value == 0) {
+                        revealAdjacentTiles(tileIdentify.target); // Reveal adjacent tiles if the value is 0
+                    }
                 }
                 //Zhang: This should work(?)
                 if (checkWinCondition()){ //Check if all bombs are flagged (Jack note - this is totally jank and just a placeholder)
@@ -126,9 +163,9 @@ function calculateTileNumbers(){
             if (i > 9 && !rightEdge && document.getElementById("msTile-"+ (i-9)).bomb) adjacentBombs++; //top-right
             if (!leftEdge && document.getElementById("msTile-"+ (i-1)).bomb) adjacentBombs++; //left
             if (!rightEdge && document.getElementById("msTile-"+ (i+1)).bomb) adjacentBombs++; //right
-            if (i < boardSize - 10 && !leftEdge && document.getElementById("msTile-"+ (i+11)).bomb) adjacentBombs++; //bottom-left
+            if (i < boardSize - 10 && !leftEdge && document.getElementById("msTile-"+ (i+9)).bomb) adjacentBombs++; //bottom-left
             if (i < boardSize - 10 && document.getElementById("msTile-"+ (i+10)).bomb) adjacentBombs++; //bottom
-            if (i < boardSize - 10 && !rightEdge && document.getElementById("msTile-"+ (i+9)).bomb) adjacentBombs++; //bottom-right
+            if (i < boardSize - 10 && !rightEdge && document.getElementById("msTile-"+ (i+11)).bomb) adjacentBombs++; //bottom-right
             tile.value = adjacentBombs; //Set the tile's value to the number of adjacent bombs
         }
     }
