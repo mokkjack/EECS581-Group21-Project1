@@ -19,7 +19,6 @@ let gameActive = 0; //0: INACTIVE | 1: ACTIVE
 //Jack Notes
 //idea for win condition, check if flagged tiles match bomb tiles, if so, call endGame(0)?
 
-
 //UI Section
 //Disable Function
 function disableButton() {
@@ -58,7 +57,6 @@ function loadGame() {
 
 //Zhang: implementation to check for win condition
 function checkWinCondition() {
-    if (flaggedTiles.length !== bombTiles.length) return false;
     return bombTiles.every(tile => flaggedTiles.includes(tile));
 }
 
@@ -141,6 +139,9 @@ function playGame() {
                     tileIdentify.target.flagged = true; //set the flag status to true
                     tileIdentify.target.classList.add('flagged'); // Add flag image
                     flaggedTiles.push(tileIdentify.target); //Add to flagged tiles
+                    if (checkWinCondition()) {
+                        endGame(2);
+                    }
                 } else {
                     tileIdentify.target.flagged = false; //set the flag status to false
                     tileIdentify.target.classList.remove('flagged'); // Remove flag image   
