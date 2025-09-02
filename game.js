@@ -101,7 +101,7 @@ function playGame() {
 
     //Left Click Listener
     document.addEventListener('click', tileIdentify => { //used Reddit to find similar function and learn target
-        if (tileIdentify.target.matches('button')) {
+        if (tileIdentify.target.id && tileIdentify.target.id.startsWith("msTile-")) {
             document.getElementById("testPara").innerHTML = tileIdentify.target.id; //test line [DELETE LATER]
             if (firstLeftClick == 0) { //check if this is the first click or not, so we can generate the bombs
                 firstLeftClick = 1; //change flag
