@@ -136,6 +136,10 @@ function playGame() {
         if (tileIdentify.target.matches('button')) {
             if (gameActive == 1) {
                 if (tileIdentify.target.flagged == false) { //Check if tile is already flagged
+                     if (flaggedTiles.length >= bombTiles.length) { //check if flag trying to be placed is > # of bombs
+                        alert("You can not place more flags than there are bombs. :(")
+                        return;
+                     }
                     tileIdentify.target.flagged = true; //set the flag status to true
                     tileIdentify.target.classList.add('flagged'); // Add flag image
                     flaggedTiles.push(tileIdentify.target); //Add to flagged tiles
