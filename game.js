@@ -249,6 +249,7 @@ function errorPage(type) {
 }
 
 //Image Check Function
+// this is vital to the success of the project
 function loadHorse(url) { //???????? -Ian 
                             //sybau, its necessary - Evan
     var horse = new Image();
