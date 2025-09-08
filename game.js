@@ -57,7 +57,7 @@ function loadGame() {
 
 //Zhang: implementation to check for win condition
 function checkWinCondition() {
-    return bombTiles.every(tile => flaggedTiles.includes(tile));
+    return bombTiles.every(tile => flaggedTiles.includes(tile)) && flaggedTiles.length === bombTiles.length;
 }
 
 //Zhang: implementation for revealing adjacent tile, logic is similar to calculateTileNumbers, but this time use recursive
