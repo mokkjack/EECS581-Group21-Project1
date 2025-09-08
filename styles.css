@@ -29,10 +29,6 @@ h1 {
     font-family:cursive;
 }
 
-body {
-    background-image: url('Images/titlePage.jpg');
-}
-
 .flagged {
     background-image: url('Images/flag.png');
 }
