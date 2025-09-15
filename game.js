@@ -267,7 +267,7 @@ function loadBomb(clicked_tile) {
     while (bombCounter > 0) {
         let randomValue = randomNumber();
         let tile = document.getElementById("msTile-"+ randomValue);
-        if (tile.id !== clicked_tile.id && !adjacentFCTiles.includes(tile.id) && tile.bomb !== true){ //Ensure the first clicked tile is not a bomb or a number tile
+        if (tile.id !== clicked_tile.id && !adjacentFCTiles.includes(randomValue) && tile.bomb !== true){ //Ensure the first clicked tile is not a bomb or a number tile
             tile.bomb = true;
             bombTiles.push(tile);
             bombCounter--;
