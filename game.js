@@ -1,20 +1,33 @@
 //game.js
 
 //Global Variables
+
+//Menu Elements
+const MAIN_MENU = document.getElementById("mainPage");
+const GAME_MENU = document.getElementById("gamePage");
+const OPTION_MENU = document.getElementById("optionPage");
+const CREDIT_MENU = document.getElementById("creditPage");
+let gameState = 0; //0: MAIN_MENU | 1: GAME_MENU | 2: OPTION_MENU | 3: CREDITS_MENU
+
+//Buttons
+const playButton = document.getElementById("playButton");
+const optionButton = document.getElementById("optionButton");
+const creditButton = document.getElementById("creditButton");
+const selectButton = document.getElementById("selectButton");
+const resetButton = document.getElementById("resetButton");
+
+//Setting Elements
 const board = document.getElementById("board");
 const bombAmount = document.getElementById("bombAmount");
-const selectButton = document.getElementById("selectButton");
-const playButton = document.getElementById("playButton");
-const resetButton = document.getElementById("resetButton");
 const gameStatus = document.getElementById("gameStatus");
 const msTiles = document.querySelectorAll("#msTile");
 
+//In-Game Elements
 let bombTiles=[]; //list of tiles with bombs
 let safeTiles=[]; //list of tiles without bombs
 let flaggedTiles=[]; //list of flagged tiles
 
 let boardSize = 0; //Size of board
-let gameActive = 0; //0: INACTIVE | 1: ACTIVE
         
 //Jack Notes
 //idea for win condition, check if flagged tiles match bomb tiles, if so, call endGame(0)?
@@ -29,13 +42,41 @@ function disableButton() {
 function select() {
     let bombValue = bombAmount.value;
     //Zhang: Add a check to ensure bomb amount is within requirement
-    if (bombValue >= 10 && bombValue <= 20){
-    gameStatus.innerHTML = "There will be " + bombValue + " bombs in this round of Minesweeper.";
-    playButton.disabled = false;}else{
+    if (bombValue >= 10 && bombValue <= 20) {
+        gameStatus.innerHTML = "There will be " + bombValue + " bombs in this round of Minesweeper.";
+        playButton.disabled = false;
+    } else {
         alert("Please select a bomb value between 10 and 20.");
         playButton.disabled = true;
         gameStatus.innerHTML = "Please select a bomb value between 10 and 20.";
     }
+}
+
+//Options Function
+function loadOption() {
+    gameState = 2;
+    MAIN_MENU.style.display = 'none';
+    GAME_MENU.style.display = 'none';
+    OPTION_MENU.style.display = 'block';
+    CREDIT_MENU.style.display = 'none';
+}
+
+//Credits Function
+function loadCredit() {
+    gameState = 3;
+    MAIN_MENU.style.display = 'none';
+    GAME_MENU.style.display = 'none';
+    OPTION_MENU.style.display = 'none';
+    CREDIT_MENU.style.display = 'block';
+}
+
+//Back Function
+function returnBack() {
+    gameState = 0;
+    MAIN_MENU.style.display = 'block';
+    GAME_MENU.style.display = 'none';
+    OPTION_MENU.style.display = 'none';
+    CREDIT_MENU.style.display = 'none';
 }
 
 //Reset Function
@@ -47,9 +88,11 @@ function resetPage() {
 //Gameplay Section
 //Load Game Function
 function loadGame() {
-    bombAmount.disabled = true; //Disable Bomb Select
-    selectButton.disabled = true; //Disable Select Button
-    playButton.disabled = true; //Disable Play Button
+    MAIN_MENU.style.display = 'none';
+    GAME_MENU.style.display = 'block';
+    OPTION_MENU.style.display = 'none';
+    CREDIT_MENU.style.display = 'none';
+    
     gameStatus.innerHTML = ""; //Clear the notification
     generateBoard(); //generate the x by x board
     playGame(); //start the actual game
@@ -96,7 +139,7 @@ function revealAdjacentTiles(tile) {
 //Play Function
 function playGame() {
     let firstLeftClick = 0; //First Left Click Gate
-    gameActive = 1; //Set the game as Active
+    gameState = 1; //Set the game as Active
     randomNumber(boardSize);
 
     //Left Click Listener
@@ -109,10 +152,10 @@ function playGame() {
                 loadBomb(tileIdentify.target); //generate all bombs on the board
                 calculateTileNumbers(); //calculate the numbers for each tile
             }
-            if (gameActive == 1) { //Check if game is active
+            if (gameState == 1) { //Check if game is active
                 if (tileIdentify.target.bomb == true) { //Bomb Check
                     tileIdentify.target.classList.add('bomb'); // Add bomb image (NOTE: StackOverflow, geeksforgeeks, and MDN web docs were used for help)
-                    gameActive = 0; //Disable Game
+                    gameState = 0; //Disable Game
                     endGame(1); //End Game
                 }
                 if (tileIdentify.target.bomb == false && tileIdentify.target.revealed == false) { //if the tile is not a bomb and hasn't been touched yet
@@ -134,7 +177,7 @@ function playGame() {
     //Right Click Listener
     document.addEventListener('contextmenu', tileIdentify => { //used Reddit to find similar function and learn target
         if (tileIdentify.target.matches('button')) {
-            if (gameActive == 1) {
+            if (gameState == 1) {
                 if (tileIdentify.target.flagged == false) { //Check if tile is already flagged
                     tileIdentify.target.flagged = true; //set the flag status to true
                     tileIdentify.target.classList.add('flagged'); // Add flag image
@@ -255,5 +298,5 @@ function loadHorse(url) { //???????? -Ian
     horse.src = url;
     if (horse.width == 0) {
         errorPage(1)
-    }
+    } else returnBack();
 }

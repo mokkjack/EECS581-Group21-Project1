@@ -1,5 +1,36 @@
 /*style.css*/
 
+/* Design Styles */
+
+h1 {
+    font-family:cursive;
+}
+
+#version {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+}
+
+/* Button Styles */
+
+#mainPage button {
+    width: 300px;
+    height: 100px;
+    font-size: 30px;
+}
+
+#optionPage button {
+    width: 150px;
+    height: 50px;
+}
+
+#creditPage button {
+    width: 150px;
+    height: 50px;
+}
+
 input {
     width: 50px;
     height: 40px;
@@ -10,24 +41,7 @@ button {
     height: 50px;
 }
 
-#selectButton {
-    width: 100px;
-    height: 50px;
-}
-
-#playButton {
-    width: 150px;
-    height: 50px;
-}
-
-#resetButton {
-    width: 150px;
-    height: 50px;
-}
-
-h1 {
-    font-family:cursive;
-}
+/* Tile Styles */
 
 .flagged {
     background-image: url('Images/flag.png');
