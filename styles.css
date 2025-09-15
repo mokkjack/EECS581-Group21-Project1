@@ -26,14 +26,29 @@ h1 {
     height: 50px;
 }
 
+input {
+    width: 50px;
+    height: 40px;
+}
+
+#optionPage #selectButton {
+    width: 75px;
+    height: 50px;
+}
+
 #creditPage button {
     width: 150px;
     height: 50px;
 }
 
-input {
-    width: 50px;
-    height: 40px;
+#gamePage #backButton {
+    width: 250px;
+    height: 50px;
+}
+
+#gamePage #resetButton {
+    width: 250px;
+    height: 50px;
 }
 
 button { 

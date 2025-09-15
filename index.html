@@ -11,6 +11,7 @@
     <!-- <body onload="disableButton()"> -->
     <body onload="loadHorse('Images/horse.webp')" oncontextmenu="return false"> <!--learned disable oncontextmenu function from StackOverflow-->
         <h1 id="titleMessage"> Minescuffers Game </h1>
+        <p id="gameStatus"> </p>
 
         <!-- Main Page -->
         <div id="mainPage">
@@ -24,10 +25,10 @@
 
         <!-- Options Page -->
         <div id="optionPage">
-            <p id="gameStatus"> </p>
-            <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
-            <button id="selectButton" onclick="select()"> Select </button>
-            <button id="backButton" onclick="returnBack()"> Back </button>
+            <p id="optionMessage"> Options </p>    
+            <li> <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
+            <button id="selectButton" onclick="select()"> Select </button> </li>
+            <li> <button id="backButton" onclick="returnBack()"> Back </button> </li>
         </div>
 
         <!-- Credits Page -->
@@ -40,12 +41,12 @@
         <div id="gamePage">
             <p id="testPara"> </p> <!-- TESTING PARAGRAPH [REMEMBER TO DELETE!!!!]-->
             <div id="board"></div>
-            <button id="backButton" onclick="returnBack()"> Back </button>
+            <!-- <button id="backButton" onclick="returnBack()"> Back </button> -->
             <button id="resetButton" onclick="resetPage()"> Reset </button>
         </div>
 
         <!-- Version Information -->
-        <p id="version"> Minescuffers Beta 1.0 </p>
+        <p id="version"> Minescuffers Beta 1.1 </p>
 
         <!-- JavaScript Section -->
         <script src="game.js"></script>

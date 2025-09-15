@@ -54,6 +54,7 @@ function select() {
 
 //Options Function
 function loadOption() {
+    gameStatus.innerHTML = '';
     gameState = 2;
     MAIN_MENU.style.display = 'none';
     GAME_MENU.style.display = 'none';
@@ -63,6 +64,7 @@ function loadOption() {
 
 //Credits Function
 function loadCredit() {
+    gameStatus.innerHTML = '';
     gameState = 3;
     MAIN_MENU.style.display = 'none';
     GAME_MENU.style.display = 'none';
@@ -72,6 +74,7 @@ function loadCredit() {
 
 //Back Function
 function returnBack() {
+    gameStatus.innerHTML = '';
     gameState = 0;
     MAIN_MENU.style.display = 'block';
     GAME_MENU.style.display = 'none';
