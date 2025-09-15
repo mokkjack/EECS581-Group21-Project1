@@ -33,6 +33,7 @@ const msTiles = document.querySelectorAll("#msTile");
 let bombTiles=[]; //list of tiles with bombs
 let safeTiles=[]; //list of tiles without bombs
 let flaggedTiles=[]; //list of flagged tiles
+let adjacentFCTiles=[]; //list of adjacent tiles to first clicked tile
 
 let boardSize = 0; //Size of board
 //UI Section
@@ -141,6 +142,25 @@ function revealAdjacentTiles(tile) {
         }
     }
 }
+function adjacentTiles(tile) { //Get all adjacent tiles to the first clicked tile
+    const tileId = parseInt(tile.id.split('-')[1]); //Get the number ID of the tile
+    const leftEdge = (tileId % 10 === 0); //Check if it's on the left edge
+    const rightEdge = (tileId % 10 === 9); //Check if it's on the right edge
+    const neighbors = []; //hold adjacent tile
+    if (tileId >= 10) { //If not on the top row
+        if (!leftEdge) neighbors.push(tileId - 11); //northwest
+        neighbors.push(tileId - 10); //north
+        if (!rightEdge) neighbors.push(tileId - 9); //northeasst
+    }
+    if (!leftEdge) neighbors.push(tileId - 1); //west
+    if (!rightEdge) neighbors.push(tileId + 1); //east
+    if (tileId < boardSize - 10) { //If not on the bottom row
+        if (!leftEdge) neighbors.push(tileId + 9); //southwest
+        neighbors.push(tileId + 10); //south
+        if (!rightEdge) neighbors.push(tileId + 11); //southeast
+    }
+    return neighbors; //return the list of adjacent tiles
+}
 
 //Play Function
 function playGame() {
@@ -155,6 +175,7 @@ function playGame() {
             if (firstLeftClick == 0) { //check if this is the first click or not, so we can generate the bombs
                 firstLeftClick = 1; //change flag
                 //Zhang: added the new parameter and function
+                adjacentFCTiles = adjacentTiles(tileIdentify.target); //Get all adjacent tiles to the first clicked tile
                 loadBomb(tileIdentify.target); //generate all bombs on the board
                 calculateTileNumbers(); //calculate the numbers for each tile
             }
@@ -246,7 +267,7 @@ function loadBomb(clicked_tile) {
     while (bombCounter > 0) {
         let randomValue = randomNumber();
         let tile = document.getElementById("msTile-"+ randomValue);
-        if (tile.id !== clicked_tile.id && tile.bomb !== true){ //Ensure the first clicked tile is not a bomb
+        if (tile.id !== clicked_tile.id && !adjacentFCTiles.includes(tile.id) && tile.bomb !== true){ //Ensure the first clicked tile is not a bomb or a number tile
             tile.bomb = true;
             bombTiles.push(tile);
             bombCounter--;
