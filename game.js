@@ -1,4 +1,11 @@
-//game.js
+/**
+File: game.js
+EECS 581 - Group 21
+Project 1 - Minesweeper
+Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Evan Zhuo, Alex Carillo
+This file contains all the JavaScript code for the actual game of minesweeper
+It is sectioned off based on purpose of each function/code (ui, gameplay, logic, etc)
+*/
 
 //Global Variables
 
@@ -28,10 +35,6 @@ let safeTiles=[]; //list of tiles without bombs
 let flaggedTiles=[]; //list of flagged tiles
 
 let boardSize = 0; //Size of board
-        
-//Jack Notes
-//idea for win condition, check if flagged tiles match bomb tiles, if so, call endGame(0)?
-
 //UI Section
 //Disable Function
 function disableButton() {
@@ -170,7 +173,7 @@ function playGame() {
                     }
                 }
                 //Zhang: This should work(?)
-                if (checkWinCondition()){ //Check if all bombs are flagged (Jack note - this is totally jank and just a placeholder)
+                if (checkWinCondition()){ //Check if all bombs are flagged
                     endGame(2); //Win game
                 }
                 //Otherwise, (aka if it's flagged or revealed) do nothing to it
