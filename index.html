@@ -3,7 +3,7 @@ File: minesweeperProject.html
 File: game.js
 EECS 581 - Group 21
 Project 1 - Minesweeper
-Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Evan Zhuo, Alex Carillo
+Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Zhang Chen, Alex Carillo
 This file contains the HTML code for the minesweeper project.
 This serves as the homepage for the game, linking the CSS and JS file, as well as giving options to the user
 -->
@@ -37,6 +37,7 @@ This serves as the homepage for the game, linking the CSS and JS file, as well a
             <p id="optionMessage"> Options </p>    
             <li> <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
             <button id="selectButton" onclick="select()"> Select </button> </li>
+            <li> <button id="themeButton" onclick="changeTheme()"> Default Style </button> </li>
             <li> <button id="backButton" onclick="returnBack()"> Back </button> </li>
         </div>
 
@@ -55,7 +56,7 @@ This serves as the homepage for the game, linking the CSS and JS file, as well a
         </div>
 
         <!-- Version Information -->
-        <p id="version"> Minescuffers Beta 1.1 </p>
+        <p id="version"> Minescuffers Beta 1.2 </p>
 
         <!-- JavaScript Section -->
         <script src="game.js"></script>

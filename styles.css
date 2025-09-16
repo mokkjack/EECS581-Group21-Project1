@@ -2,7 +2,7 @@
 * File: styles.css
 * EECS 581 - Group 21
 * Project 1 - Minesweeper
-* Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Evan Zhuo, Alex Carillo
+* Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Zhang Chen, Alex Carillo
 * This file contains the CSS code to add design to the main html file.
 */
 
@@ -10,6 +10,22 @@
 
 h1 {
     font-family:cursive;
+}
+
+body {
+    background-color: white;
+    color: black;
+    font-family: cursive;
+}
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
+
+.green-mode {
+    background-color: green;
+    color: greenyellow;
 }
 
 #version {
@@ -25,11 +41,13 @@ h1 {
     width: 300px;
     height: 100px;
     font-size: 30px;
+    font-family: cursive;
 }
 
 #optionPage button {
     width: 150px;
     height: 50px;
+    font-family: cursive;
 }
 
 input {
@@ -40,21 +58,25 @@ input {
 #optionPage #selectButton {
     width: 75px;
     height: 50px;
+    font-family: cursive;
 }
 
 #creditPage button {
     width: 150px;
     height: 50px;
+    font-family: cursive;
 }
 
 #gamePage #backButton {
     width: 250px;
     height: 50px;
+    font-family: cursive;
 }
 
 #gamePage #resetButton {
     width: 250px;
     height: 50px;
+    font-family: cursive;
 }
 
 button { 

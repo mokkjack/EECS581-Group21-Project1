@@ -2,7 +2,7 @@
 File: game.js
 EECS 581 - Group 21
 Project 1 - Minesweeper
-Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Evan Zhuo, Alex Carillo
+Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Zhang Chen, Alex Carillo
 This file contains all the JavaScript code for the actual game of minesweeper
 It is sectioned off based on purpose of each function/code (ui, gameplay, logic, etc)
 */
@@ -14,12 +14,14 @@ const MAIN_MENU = document.getElementById("mainPage");
 const GAME_MENU = document.getElementById("gamePage");
 const OPTION_MENU = document.getElementById("optionPage");
 const CREDIT_MENU = document.getElementById("creditPage");
+let currentTheme = 0; //0: SCUFF_STYLE | 1: DARK_STYLE | 2: CLASSIC_STYLE
 let gameState = 0; //0: MAIN_MENU | 1: GAME_MENU | 2: OPTION_MENU | 3: CREDITS_MENU
 
 //Buttons
 const playButton = document.getElementById("playButton");
 const optionButton = document.getElementById("optionButton");
 const creditButton = document.getElementById("creditButton");
+const themeButton = document.getElementById("themeButton");
 const selectButton = document.getElementById("selectButton");
 const resetButton = document.getElementById("resetButton");
 
@@ -303,6 +305,26 @@ function generateBoard() {
     boardSize = idNum; //Number is used for randomizer, fix code
 }
 
+//Change Style Function
+function changeTheme() {
+    let theme = document.body;
+    currentTheme++;
+    if (currentTheme == 3) currentTheme = 0;
+
+    //Theme Toggle
+    if (currentTheme == 0) {
+        theme.classList.toggle("dark-mode");
+        theme.classList.toggle("green-mode");
+        themeButton.innerHTML = "Default Theme";
+    } else if (currentTheme == 1) {
+        theme.classList.toggle("dark-mode");
+        themeButton.innerHTML = "Dark Theme";
+    } else if (currentTheme == 2) {
+        theme.classList.toggle("green-mode");
+        themeButton.innerHTML = "Green Theme";
+    }
+}
+
 //Error Function
 function errorPage(type) {
     //Remove All UI
@@ -319,8 +341,7 @@ function errorPage(type) {
 }
 
 //Image Check Function
-function loadHorse(url) { //???????? -Ian 
-                            //sybau, its necessary - Evan
+function loadHorse(url) { 
     var horse = new Image();
     horse.src = url;
     if (horse.width == 0) {
