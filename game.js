@@ -314,14 +314,14 @@ function changeTheme() {
     //Theme Toggle
     if (currentTheme == 0) {
         theme.classList.toggle("dark-mode");
-        theme.classList.toggle("green-mode");
+        theme.classList.toggle("classic-mode");
         themeButton.innerHTML = "Default Theme";
     } else if (currentTheme == 1) {
         theme.classList.toggle("dark-mode");
         themeButton.innerHTML = "Dark Theme";
     } else if (currentTheme == 2) {
-        theme.classList.toggle("green-mode");
-        themeButton.innerHTML = "Green Theme";
+        theme.classList.toggle("classic-mode");
+        themeButton.innerHTML = "Classic Theme";
     }
 }
 
