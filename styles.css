@@ -69,7 +69,7 @@ button { width: 50px; height: 50px; }
 .bomb { background-image: url('Images/bomb.png'); background-color:rgb(197, 197, 197) }
 
 .dark-mode {
-    .flagged { background-image: url('Images/horse.webp'); }
+    .flagged { background-image: url('Images/flag.png'); }
     .revealed-0 { background-color:rgb(197, 197, 197) }
     .revealed-1 { background-image: url('Images/1.png'); background-color:rgb(197, 197, 197) }
     .revealed-2 { background-image: url('Images/2.png'); background-color:rgb(197, 197, 197) }
@@ -95,3 +95,4 @@ button { width: 50px; height: 50px; }
     .revealed-8 { background-image: url('Images/8.png'); background-color:rgb(197, 197, 197) }
     .bomb { background-image: url('Images/bomb.png'); background-color:rgb(197, 197, 197) }
 }
+

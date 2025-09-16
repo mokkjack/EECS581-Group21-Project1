@@ -33,7 +33,7 @@ const msTiles = document.querySelectorAll("#msTile");
 
 //In-Game Elements
 let bombTiles=[]; //list of tiles with bombs
-let safeTiles=[]; //list of tiles without bombs
+let safeTiles=[]; //list of tiles without bombs #TODO this does nothing right now, should be used when buttons are clicked
 let flaggedTiles=[]; //list of flagged tiles
 let adjacentFCTiles=[]; //list of adjacent tiles to first clicked tile
 
@@ -287,9 +287,35 @@ function randomNumber() {
 //Generate Board Function
 function generateBoard() {
     let idNum = 0; //ID number
-    for (let i = 0; i < 10; i++) {
+
+    var abc = "abcdefghijklmnopqrstuvwxyz".toUpperCase();
+    const headerRow = document.createElement('div');
+    headerRow.setAttribute('style', 'display:flex ; align-items:center; justify-content:center;');
+    board.appendChild(headerRow);
+
+    const corner = document.createElement('div');
+    corner.style.width = '50px';
+    headerRow.append(corner);
+
+    for(let i = 0; i < 10; i++){ //column headers
+        const colLabel = document.createElement('div');
+        var letter = abc.substring(i,i+1);
+        colLabel.innerText = letter;
+        colLabel.setAttribute('style','align-items:center ;width:50px; height:50px; display:flex ;justify-content:center;');
+        headerRow.append(colLabel);
+    }
+
+    for (let i = 0; i < 10; i++) { //rows
         const msRow = document.createElement('div'); // Create a div to store buttons
+        msRow.setAttribute('style', 'display:flex ; align-items:center; justify-content:center;')
         board.appendChild(msRow); // Append the div to the board slot
+
+        const rowLabel = document.createElement('div');
+        rowLabel.setAttribute('style','align-items:center ;width:50px; height:50px; display:flex ;justify-content:center')
+        var txt = (i+1).toString();
+        rowLabel.innerText = txt;
+        msRow.appendChild(rowLabel)
+
         for (let j = 0; j < 10; j++) {
             const msButton = document.createElement('button'); // Create buttons k times
             msButton.id = "msTile-"+idNum;// assign unique ID for tracking
@@ -301,8 +327,10 @@ function generateBoard() {
             msRow.appendChild(msButton); // Append buttons to the row
             idNum++;
         }
+        
     }
     boardSize = idNum; //Number is used for randomizer, fix code
+    //I call this one div hellscape
 }
 
 //Change Style Function
