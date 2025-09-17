@@ -6,6 +6,8 @@ Project 1 - Minesweeper
 Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Zhang Chen, Alex Carillo
 This file contains the HTML code for the minesweeper project.
 This serves as the homepage for the game, linking the CSS and JS file, as well as giving options to the user
+The only inputs are from the user clicking buttons to navigate the page and play the game, or choosing a bomb amount
+The outputs are the visual display of the game, as well as text prompts to the user detailing the game status
 -->
 
 <!DOCTYPE html>
@@ -34,9 +36,7 @@ This serves as the homepage for the game, linking the CSS and JS file, as well a
 
         <!-- Options Page -->
         <div id="optionPage">
-            <p id="optionMessage"> Options </p>    
-            <li> <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
-            <button id="selectButton" onclick="select()"> Select </button> </li>
+            <p id="optionMessage"> Options </p>
             <li> <button id="themeButton" onclick="changeTheme()"> Default Theme </button> </li>
             <li> <button id="backButton" onclick="returnBack()"> Back </button> </li>
         </div>
@@ -47,11 +47,18 @@ This serves as the homepage for the game, linking the CSS and JS file, as well a
             <button id="backButton" onclick="returnBack()"> Back </button>
         </div>
 
+        <!-- Pre-Game Page -->
+        <div id="preGamePage">
+            <p id="preGameMessage"> Select Bomb Amount (10-20) </p>
+            <li> <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
+            <button id="selectButton" onclick="select()"> Select </button> </li>
+        </div>
+
         <!-- Game Page -->
         <div id="gamePage">
-            <p id="testPara"> </p> <!-- TESTING PARAGRAPH [REMEMBER TO DELETE!!!!]-->
+            <div id="mineFlagStatus" style="display: flex; gap: 20px; justify-content: center; align-items: center;"></div>
+                <span id="mineCount"><img src="Images/bomb.png" style="height:24px;"> <span id="mineNum"></span></span>
             <div id="board"></div>
-            <!-- <button id="backButton" onclick="returnBack()"> Back </button> -->
             <button id="resetButton" onclick="resetPage()"> Reset </button>
         </div>
 
