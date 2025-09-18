@@ -1,0 +1,66 @@
+digraph Minesweeper {
+    rankdir=TB; // Top-to-Bottom
+    node [shape=record, fontsize=10];
+
+    #HTML
+    HTML [label="{index.html|
+        - Defines menus & board\l
+        - Buttons: play, select, reset\l
+        - Links game.js & styles.css\l
+    }"];
+
+    #CSS
+    CSS [label="{styles.css|
+        - Button/input sizing\l
+        - Background images\l
+        - Classes: .flagged, .revealed-X, .bomb\l
+    }"];
+
+    #UI
+    UI [label="{MinesweeperUI (game.js)|
+        + disableButton(), select()\l
+        + loadOption(), loadCredit()\l
+        + returnBack(), resetPage()\l
+        + loadGame(), startGame()\l
+        + changeTheme(), errorPage()\l
+    }"];
+
+    #gamestate
+    GS [label="{GameState (game.js)|
+        - gameState:int, currentTheme:int\l
+        - bombTiles, flaggedTiles\l|
+        + checkWinCondition()\l
+        + remainingMines(), endGame()\l
+    }"];
+
+    #board
+    BM [label="{BoardManager (game.js)|
+        + generateBoard()\l
+        + loadBomb(), randomNumber()\l
+        + calculateTileNumbers()\l
+        + revealAdjacentTiles(), adjacentTiles()\l
+    }"];
+
+    #gameplay
+    GP [label="{Gameplay (game.js)|
+        + playGame()\l
+        - Handles clicks, reveals, flags\l
+    }"];
+
+    #title
+    Tile [label="{Tile|
+        - id:string\l
+        - bomb, revealed, flagged:bool\l
+        - value:int\l
+    }"];
+
+    #relations
+    HTML -> CSS [label="styled by"];
+    HTML -> UI [label="calls JS"];
+    UI -> GS [label="manages"];
+    UI -> GP [label="starts"];
+    GS -> BM [label="uses"];
+    BM -> Tile [label="creates"];
+    GP -> Tile [label="updates"];
+    GP -> GS [label="checks"];
+}
