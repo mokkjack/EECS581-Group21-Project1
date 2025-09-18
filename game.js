@@ -45,6 +45,8 @@ let safeTiles=[]; //list of tiles without bombs
 let flaggedTiles=[]; //list of flagged tiles
 let adjacentFCTiles=[]; //list of adjacent tiles to first clicked tile
 let boardSize = 0; //Size of board
+let userFlagCount = 0; //Number of flags placed by user
+let actualFlaggedBombCount = 0; //Number of correctly flagged bombs
 
 
 //UI Section
@@ -131,11 +133,12 @@ function startGame(){
 }
 
 function checkWinCondition() {
-    return (bombTiles.every(tile => flaggedTiles.includes(tile)) && flaggedTiles.length === bombTiles.length); //If the number of flagged tiles equals the number of bomb tiles, and all bomb tiles are flagged, return true
+    return (actualFlaggedBombCount === bombTiles.length); //If the number of flagged tiles equals the number of bomb tiles, and all bomb tiles are flagged, return true
 }
 
 function remainingMines(){
-    mineNum.innerHTML = (bombTiles.filter(tile => !flaggedTiles.includes(tile))).length; //Calculate remaining mines by bomb tiles that are not flagged, and set the value to the mineNum element
+    const remaining = Math.max(0, parseInt(bombAmount.value, 10) - userFlagCount); //Calculate the remaining mines
+    mineNum.innerHTML = remaining; //Update the mineNum element
 }
 //Zhang: implementation for revealing adjacent tile, logic is similar to calculateTileNumbers, but this time use recursive
 //to keep revealing tiles until all safe tiles are uncovered
@@ -195,7 +198,11 @@ function playGame() {
     let firstLeftClick = 0; //First Left Click Gate
     gameState = 1; //Set the game as Active
     randomNumber(boardSize); //Generate random numbers for bomb placement
+    userFlagCount = 0; //Reset user flag count
+    actualFlaggedBombCount = 0; //Reset actual flagged bomb count
+    flaggedTiles = []; //Reset flagged tiles
     mineNum.innerHTML = bombAmount.value; //Set the mineNum element to the bomb amount
+    remainingMines(); //Update the remaining mines display
     //Left Click Listener
     document.addEventListener('click', tileIdentify => { //used Reddit to find similar function and learn target
         console.log(firstLeftClick); //test line [DELETE LATER]
@@ -232,18 +239,27 @@ function playGame() {
     document.addEventListener('contextmenu', tileIdentify => { //used Reddit to find similar function and learn target
         if (tileIdentify.target.matches('button')) {
             if (gameState == 1) { //Check if game is active
-                if (tileIdentify.target.flagged == false && !tileIdentify.target.revealed) { //Check if tile is already flagged and not revealed yet
-                    tileIdentify.target.flagged = true; //set the flag status to true
-                    tileIdentify.target.classList.add('flagged'); // Add flag image
-                    flaggedTiles.push(tileIdentify.target); //Add to flagged tiles
+                const tile = tileIdentify.target; //Get the tile element
+                if (tile.flagged == false && !tile.revealed) { //Check if tile is already flagged and not revealed yet
+                    tile.flagged = true; //set the flag status to true
+                    tile.classList.add('flagged'); // Add flag image
+                    flaggedTiles.push(tile); //Add to flagged tiles
+                    userFlagCount++; //Increment user flag count
+                    if (tile.bomb === true) actualFlaggedBombCount++; //If the flagged tile is a bomb, increment the actual flagged bomb count
                     remainingMines(); //Update remaining mine count
                     if (checkWinCondition()) { //Check if all bombs are flagged
                         endGame(2); //Win game
                     }
-                } else {
-                    tileIdentify.target.flagged = false; //set the flag status to false
-                    tileIdentify.target.classList.remove('flagged'); // Remove flag image   
-                    flaggedTiles.splice(flaggedTiles.indexOf(tileIdentify.target), 1); //Remove from flagged tiles
+                } else if (tile.flagged == true && !tile.revealed) { //If the tile is already flagged and not revealed yet
+                    tile.flagged = false; //set the flag status to false
+                    tile.classList.remove('flagged');
+                    const idx = flaggedTiles.indexOf(tile); //Find the index of the tile in the flagged tiles array
+                    if (idx > -1) flaggedTiles.splice(idx, 1);
+                    userFlagCount = Math.max(0, userFlagCount - 1); //Decrement user flag count
+                    if (tile.bomb === true) actualFlaggedBombCount = Math.max(0, actualFlaggedBombCount - 1);
+                    //tileIdentify.target.flagged = false; //set the flag status to false
+                    //tileIdentify.target.classList.remove('flagged'); // Remove flag image   
+                    //flaggedTiles.splice(flaggedTiles.indexOf(tileIdentify.target), 1); //Remove from flagged tiles
                     remainingMines(); //Update remaining mine count
                 }
             }
