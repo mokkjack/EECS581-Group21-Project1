@@ -44,13 +44,13 @@ button { width: 50px; height: 50px; }
 }
 
 .classic-mode {
-    #mainPage button { width: 300px; height: 100px; font-size: 30px; font-family: sans-serif; }
-    #optionPage button { width: 150px; height: 50px; font-family: sans-serif; }
-    input { width: 50px; height: 40px; }
-    #optionPage #selectButton { width: 75px; height: 50px; font-family: sans-serif; }
-    #creditPage button { width: 150px; height: 50px; font-family: sans-serif; }
-    #gamePage #backButton { width: 250px; height: 50px; font-family: sans-serif; }
-    #gamePage #resetButton { width: 250px; height: 50px; font-family: sans-serif; }
+    #mainPage button { width: 300px; height: 100px; font-size: 30px; font-family: sans-serif; background-color:lightgray; color:black; }
+    #optionPage button { width: 150px; height: 50px; font-family: sans-serif; background-color:lightgray; color:black; }
+    input { width: 50px; height: 40px; background-color:lightgray; color:black; }
+    #optionPage #selectButton { width: 75px; height: 50px; font-family: sans-serif; background-color:lightgray; color:black; }
+    #creditPage button { width: 150px; height: 50px; font-family: sans-serif; background-color:lightgray; color:black; }
+    #gamePage #backButton { width: 250px; height: 50px; font-family: sans-serif; background-color:lightgray; color:black; }
+    #gamePage #resetButton { width: 250px; height: 50px; font-family: sans-serif; background-color:lightgray; color:black; }
     button { width: 50px; height: 50px; }
 }
 
@@ -83,16 +83,16 @@ button { width: 50px; height: 50px; }
 }
 
 .classic-mode {
-    .flagged { background-image: url('Images/flag.png'); }
-    .revealed-0 { background-color:rgb(197, 197, 197) }
-    .revealed-1 { background-image: url('Images/1.png'); background-color:rgb(197, 197, 197) }
-    .revealed-2 { background-image: url('Images/2.png'); background-color:rgb(197, 197, 197) }
-    .revealed-3 { background-image: url('Images/3.png'); background-color:rgb(197, 197, 197) }
-    .revealed-4 { background-image: url('Images/4.png'); background-color:rgb(197, 197, 197) }
-    .revealed-5 { background-image: url('Images/5.png'); background-color:rgb(197, 197, 197) }
-    .revealed-6 { background-image: url('Images/6.png'); background-color:rgb(197, 197, 197) }
-    .revealed-7 { background-image: url('Images/7.png'); background-color:rgb(197, 197, 197) }
-    .revealed-8 { background-image: url('Images/8.png'); background-color:rgb(197, 197, 197) }
-    .bomb { background-image: url('Images/bomb.png'); background-color:rgb(197, 197, 197) }
+    .flagged { background-image: url('Images/classic_theme/c_flag.png'); background-size: 100%; }
+    .revealed-0 { background-color:gray }
+    .revealed-1 { background-image: url('Images/classic_theme/c_1.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .revealed-2 { background-image: url('Images/classic_theme/c_2.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .revealed-3 { background-image: url('Images/classic_theme/c_3.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .revealed-4 { background-image: url('Images/classic_theme/c_4.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .revealed-5 { background-image: url('Images/classic_theme/c_5.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .revealed-6 { background-image: url('Images/classic_theme/c_6.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .revealed-7 { background-image: url('Images/classic_theme/c_7.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .revealed-8 { background-image: url('Images/classic_theme/c_8.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
+    .bomb { background-image: url('Images/classic_theme/c_bomb.png'); background-size: 100%; background-color:rgb(197, 197, 197) }
 }
 
