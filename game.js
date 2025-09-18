@@ -238,7 +238,7 @@ function playGame() {
     //Right Click Listener
     document.addEventListener('contextmenu', tileIdentify => { //used Reddit to find similar function and learn target
         if (tileIdentify.target.matches('button')) {
-            if (gameState == 1) { //Check if game is active
+            if (gameState == 1 && firstLeftClick==1) { //Check if game is active
                 const tile = tileIdentify.target; //Get the tile element
                 if (tile.flagged == false && !tile.revealed) { //Check if tile is already flagged and not revealed yet
                     tile.flagged = true; //set the flag status to true
