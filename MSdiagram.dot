@@ -1,5 +1,5 @@
 digraph Minesweeper {
-    rankdir=TB; // Top-to-Bottom
+    rankdir=TB; //vertical
     node [shape=record, fontsize=10];
 
     #HTML
