@@ -1,88 +1,98 @@
-/*style.css*/
+/*
+* File: styles.css
+* EECS 581 - Group 21
+* Project 1 - Minesweeper
+* Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Zhang Chen, Alex Carillo
+* This file contains the CSS code to add design to the main html file.
+*/
 
-input {
-    width: 50px;
-    height: 40px;
+/* Design Styles */
+
+h1 { font-family:cursive; }
+body { background-color: white; color: black; font-family: cursive; }
+#version { position: absolute; bottom: 0; left: 0; padding: 5px; }
+
+.dark-mode {
+    background-color: black; color: white;
 }
 
-button { 
-    width: 50px; 
-    height: 50px;
+.classic-mode {
+    h1 { font-family: sans-serif;}
+    background-color: white; color: black; font-family: sans-serif;
 }
 
-#selectButton {
-    width: 100px;
-    height: 50px;
+/* Button Styles */
+
+#mainPage button { width: 300px; height: 100px; font-size: 30px; font-family: cursive; }
+#optionPage button { width: 150px; height: 50px; font-family: cursive; }
+input { width: 50px; height: 40px; }
+#optionPage #selectButton { width: 75px; height: 50px; font-family: cursive; }
+#creditPage button { width: 150px; height: 50px; font-family: cursive; }
+#gamePage #backButton { width: 250px; height: 50px; font-family: cursive; }
+#gamePage #resetButton { width: 250px; height: 50px; font-family: cursive; }
+button { width: 50px; height: 50px; }
+
+.dark-mode {
+    #mainPage button { width: 300px; height: 100px; font-size: 30px; font-family: cursive; background-color:gray; color:white; }
+    #optionPage button { width: 150px; height: 50px; font-family: cursive; background-color:gray; color:white; }
+    input { width: 50px; height: 40px; background-color:gray; color:white; }
+    #optionPage #selectButton { width: 75px; height: 50px; font-family: cursive; background-color:gray; color:white; }
+    #creditPage button { width: 150px; height: 50px; font-family: cursive; background-color:gray; color:white; }
+    #gamePage #backButton { width: 250px; height: 50px; font-family: cursive; background-color:gray; color:white; }
+    #gamePage #resetButton { width: 250px; height: 50px; font-family: cursive; background-color:gray; color:white; }
+    button { width: 50px; height: 50px; background-color:lightgray }
 }
 
-#playButton {
-    width: 150px;
-    height: 50px;
+.classic-mode {
+    #mainPage button { width: 300px; height: 100px; font-size: 30px; font-family: sans-serif; }
+    #optionPage button { width: 150px; height: 50px; font-family: sans-serif; }
+    input { width: 50px; height: 40px; }
+    #optionPage #selectButton { width: 75px; height: 50px; font-family: sans-serif; }
+    #creditPage button { width: 150px; height: 50px; font-family: sans-serif; }
+    #gamePage #backButton { width: 250px; height: 50px; font-family: sans-serif; }
+    #gamePage #resetButton { width: 250px; height: 50px; font-family: sans-serif; }
+    button { width: 50px; height: 50px; }
 }
 
-#resetButton {
-    width: 150px;
-    height: 50px;
+/* Tile Styles */
+
+.flagged { background-image: url('Images/flag.png'); }
+.revealed-0 { background-color:rgb(197, 197, 197) }
+.revealed-1 { background-image: url('Images/1.png'); background-color:rgb(197, 197, 197) }
+.revealed-2 { background-image: url('Images/2.png'); background-color:rgb(197, 197, 197) }
+.revealed-3 { background-image: url('Images/3.png'); background-color:rgb(197, 197, 197) }
+.revealed-4 { background-image: url('Images/4.png'); background-color:rgb(197, 197, 197) }
+.revealed-5 { background-image: url('Images/5.png'); background-color:rgb(197, 197, 197) }
+.revealed-6 { background-image: url('Images/6.png'); background-color:rgb(197, 197, 197) }
+.revealed-7 { background-image: url('Images/7.png'); background-color:rgb(197, 197, 197) }
+.revealed-8 { background-image: url('Images/8.png'); background-color:rgb(197, 197, 197) }
+.bomb { background-image: url('Images/bomb.png'); background-color:rgb(197, 197, 197) }
+
+.dark-mode {
+    .flagged { background-image: url('Images/flag.png'); }
+    .revealed-0 { background-color:gray }
+    .revealed-1 { background-image: url('Images/1.png'); background-color:gray }
+    .revealed-2 { background-image: url('Images/2.png'); background-color:gray }
+    .revealed-3 { background-image: url('Images/3.png'); background-color:gray }
+    .revealed-4 { background-image: url('Images/4.png'); background-color:gray }
+    .revealed-5 { background-image: url('Images/5.png'); background-color:gray }
+    .revealed-6 { background-image: url('Images/6.png'); background-color:gray }
+    .revealed-7 { background-image: url('Images/7.png'); background-color:gray }
+    .revealed-8 { background-image: url('Images/8.png'); background-color:gray }
+    .bomb { background-image: url('Images/bomb.png'); background-color:gray }
 }
 
-h1 {
-    font-family:cursive;
+.classic-mode {
+    .flagged { background-image: url('Images/flag.png'); }
+    .revealed-0 { background-color:rgb(197, 197, 197) }
+    .revealed-1 { background-image: url('Images/1.png'); background-color:rgb(197, 197, 197) }
+    .revealed-2 { background-image: url('Images/2.png'); background-color:rgb(197, 197, 197) }
+    .revealed-3 { background-image: url('Images/3.png'); background-color:rgb(197, 197, 197) }
+    .revealed-4 { background-image: url('Images/4.png'); background-color:rgb(197, 197, 197) }
+    .revealed-5 { background-image: url('Images/5.png'); background-color:rgb(197, 197, 197) }
+    .revealed-6 { background-image: url('Images/6.png'); background-color:rgb(197, 197, 197) }
+    .revealed-7 { background-image: url('Images/7.png'); background-color:rgb(197, 197, 197) }
+    .revealed-8 { background-image: url('Images/8.png'); background-color:rgb(197, 197, 197) }
+    .bomb { background-image: url('Images/bomb.png'); background-color:rgb(197, 197, 197) }
 }
 
-body {
-    background-image: url('Images/titlePage.jpg');
-}
-
-.flagged {
-    background-image: url('Images/flag.png');
-}
-
-.revealed-0 {
-    background-color:rgb(197, 197, 197)
-}
-
-.revealed-1 {
-    background-image: url('Images/1.png');
-    background-color:rgb(197, 197, 197)
-}
-
-.revealed-2 {
-    background-image: url('Images/2.png');
-    background-color:rgb(197, 197, 197)
-
-}
-
-.revealed-3 {
-    background-image: url('Images/3.png');
-    background-color:rgb(197, 197, 197)
-}
-
-.revealed-4 {
-    background-image: url('Images/4.png');
-    background-color:rgb(197, 197, 197)
-}
-
-.revealed-5 {
-    background-image: url('Images/5.png');
-    background-color:rgb(197, 197, 197)
-}
-
-.revealed-6 {
-    background-image: url('Images/6.png');
-    background-color:rgb(197, 197, 197)
-}
-
-.revealed-7 {
-    background-image: url('Images/7.png');
-    background-color:rgb(197, 197, 197)
-}
-
-.revealed-8 {
-    background-image: url('Images/8.png');
-    background-color:rgb(197, 197, 197)
-}
-
-.bomb {
-    background-image: url('Images/bomb.png');
-    background-color:rgb(197, 197, 197)
-}

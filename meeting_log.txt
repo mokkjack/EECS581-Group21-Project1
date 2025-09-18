@@ -1,0 +1,41 @@
+Meeting 1 
+8/25/2025
+Initial meeting, introductions, and establishing an outline for the project
+
+Present Memebers: Alexander Carrillo, Evan Zhuo, Zhang Chen, Jack Morice, Ian Foehrweiser
+
+Outine:
+Main goal for this week is set up the repositiory and communication channels for us to stay updated with the project and each other
+We have already started on the code, deciding to do it html and javascript
+We want to get the board functional by next meeting
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Meeting 1
+8/25
+Present Members: Alexander Carrillo, Evan Zhuo, Zhang Chen, Jack Morice, Ian Foehrweiser
+Touching base
+
+Outline:
+Basic introductions, talking about our plans and expectations of the project.
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Did not meet for 9/1 for labor day.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Meeting 2
+9/8
+Present Members: Alexander Carrillo, Evan Zhuo, Zhang Chen, Jack Morice, Ian Foehrweiser
+Touching base
+
+Outline:
+What we talked about was bugs or features we need to still address before the project is turned in. We didn't have a lot to go over, just the numbers and letters at the sides and top of the grid, there was also an issue where the flags were not capped
+
+-------------------------------------------------------------------------------------------------------------------------------------
+Meeting3
+9/15
+Present Members: Alexander Carrillo, Evan Zhuo, Zhang Chen, Jack Morice, Ian Foehrweiser
+Finalizing features and fixing bugs
+
+Outline:
+We discussed the last features needed to be added and what bugs have comeup / need to still be addressed. The due date is this sunday and we feel that what we need a little more work to finish the project and we won't have an issue meeting the deadline.

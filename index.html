@@ -1,4 +1,15 @@
-<!--minesweeperProject.html-->
+<!--
+File: minesweeperProject.html
+File: game.js
+EECS 581 - Group 21
+Project 1 - Minesweeper
+Authors: Evan Zhuo, Ian Foerwiser, Jack Morice, Zhang Chen, Alex Carillo
+This file contains the HTML code for the minesweeper project.
+This serves as the homepage for the game, linking the CSS and JS file, as well as giving options to the user
+The only inputs are from the user clicking buttons to navigate the page and play the game, or choosing a bomb amount
+The outputs are the visual display of the game, as well as text prompts to the user detailing the game status
+-->
+
 <!DOCTYPE html>
 <html>
     <!-- Link to our CSS file -->
@@ -9,19 +20,52 @@
         <title>Minesweeper Project</title>
     </head>
     <!-- <body onload="disableButton()"> -->
-    <body onload="disableButton(); loadHorse('Images/horse.webp')" oncontextmenu="return false"> <!--learned disable oncontextmenu function from StackOverflow-->
-        <div id="mainPage">
+    <body onload="loadHorse('Images/horse.webp')" oncontextmenu="return false"> <!--learned disable oncontextmenu function from StackOverflow-->
         <h1 id="titleMessage"> Minescuffers Game </h1>
-        <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
-        <button id="selectButton" onclick="select()"> Select </button>
-        <button id="playButton" onclick="loadGame()"> Play </button>
-        <button id="resetButton" onclick="resetPage()"> Reset </button>
         <p id="gameStatus"> </p>
-        <p id="testPara"> </p> <!-- TESTING PARAGRAPH [REMEMBER TO DELETE!!!!]-->
-        <p id="gap"></p> <!-- Create a gap between the button and the board -->
-        <div id="board"></div>
+
+        <!-- Main Page -->
+        <div id="mainPage">
+        <li> <button id="playButton" onclick="loadGame()"> Play Game </button> </li>
+        <li> <button id="optionButton" onclick="loadOption()"> Options </button> </li>
+        <li> <button id="creditButton" onclick="loadCredit()"> Credits </button> </li>
+        <li> <button id="resetButton" onclick="resetPage()"> Reset </button> </li>
+
         <img src="Images/horse.webp" width="0%" height="auto"> <!-- Error Check: Images Folder Detector -->
         </div>
+
+        <!-- Options Page -->
+        <div id="optionPage">
+            <p id="optionMessage"> Options </p>
+            <li> <button id="themeButton" onclick="changeTheme()"> Default Theme </button> </li>
+            <li> <button id="backButton" onclick="returnBack()"> Back </button> </li>
+        </div>
+
+        <!-- Credits Page -->
+        <div id="creditPage">
+            <img src="Images/catDespair.jfif" width="25%" height="auto">
+            <h2>Credits</h2>
+            <p>Game Made by: Evan Zhuo, Ian Foerwiser, Jack Morice, Zhang Chen, Alex Carillo</p>
+            <button id="backButton" onclick="returnBack()"> Back </button>
+        </div>
+
+        <!-- Pre-Game Page -->
+        <div id="preGamePage">
+            <p id="preGameMessage"> Select Bomb Amount (10-20) </p>
+            <li> <input id="bombAmount" type="number" min="10" max="20" value="10"> </input>
+            <button id="selectButton" onclick="select()"> Select </button> </li>
+        </div>
+
+        <!-- Game Page -->
+        <div id="gamePage">
+            <div id="mineFlagStatus" style="display: flex; gap: 20px; justify-content: center; align-items: center;"></div>
+                <span id="mineCount"><img src="Images/bomb.png" style="height:24px;"> <span id="mineNum"></span></span>
+            <div id="board"></div>
+            <button id="resetButton" onclick="resetPage()"> Reset </button>
+        </div>
+
+        <!-- Version Information -->
+        <p id="version"> Minescuffers Beta 1.2.2 </p>
 
         <!-- JavaScript Section -->
         <script src="game.js"></script>
