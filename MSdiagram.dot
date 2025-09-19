@@ -1,5 +1,5 @@
 digraph Minesweeper {
-    rankdir=TB; //vertical
+    rankdir=TB;
     node [shape=record, fontsize=10];
 
     #HTML
@@ -28,7 +28,9 @@ digraph Minesweeper {
     #gamestate
     GS [label="{GameState (game.js)|
         - gameState:int, currentTheme:int\l
-        - bombTiles, flaggedTiles\l|
+        - bombTiles, flaggedTiles\l
+        - userFlagCount:int\l
+        - actualFlaggedBombCount:int\l|
         + checkWinCondition()\l
         + remainingMines(), endGame()\l
     }"];
@@ -45,9 +47,10 @@ digraph Minesweeper {
     GP [label="{Gameplay (game.js)|
         + playGame()\l
         - Handles clicks, reveals, flags\l
+        - Runs only if gameState==1 && firstLeftClick==1\l
     }"];
 
-    #title
+    #tiles
     Tile [label="{Tile|
         - id:string\l
         - bomb, revealed, flagged:bool\l
