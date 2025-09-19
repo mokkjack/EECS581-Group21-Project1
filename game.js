@@ -415,7 +415,7 @@ function errorPage(type) {
 }
 
 //Image Check Function
-//Can we please delete this
+//Can we please delete this     //no
 function loadHorse(url) { 
     var horse = new Image();
     horse.src = url;
