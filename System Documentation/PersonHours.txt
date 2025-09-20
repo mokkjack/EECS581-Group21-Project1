@@ -1,0 +1,14 @@
+PRE PROJECT:
+After discussing with our group members, we decided that we should expect:
+- About 5-7 hours each (On average, 5 hours) of work time each on getting the game to a working state.
+- Between the 5 of us, we could estimate a total person hours of 25-30 hours to get the base game working.
+- Afterwards, we could assume about 6-8 person hours spent on refining, adding smaller items, and more to the game.
+- With that, we estimate the total person hours to be from between 34-40 person hours in total to finish the project.
+
+
+POST PROJCET:
+After adding up all of our hours and reviewing how our hours were spent. We correctly guessed our estimate of 34-40 hours,
+as our final hours ended up being 39.467. However, we spent less time working on the actual game than we thought. it
+was about 4-5 hours between us who worked on the base logic to get the barebones game working. We spent a majority of our
+hours afterwards refining and making the game up to our standards, adding some extra features that we felt could 
+improve the user experience of the game.
